@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Fantasy Football Preseason Power Rankings | Bleacher Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --br-black: #111111;
+      --br-dark: #1a1a1a;
+      --br-accent: #00e08b; /* Classic sports neon accent */
+      --br-gray: #757575;
+      --br-light-gray: #f4f4f4;
+      --br-border: #e0e0e0;
+      --font-headline: 'Barlow Condensed', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f7f7f7;
+      color: #222;
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* B/R Nav Header */
+    header {
+      background-color: var(--br-black);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid #333;
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .br-logo {
+      font-family: var(--font-headline);
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .br-logo span {
+      background-color: #fff;
+      color: var(--br-black);
+      padding: 0 5px;
+      border-radius: 2px;
+    }
+
+    .nav-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #aaa;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 760px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 1.25rem;
+        margin: 0;
+        border-radius: 0;
+      }
+    }
+
+    /* Article Meta & Header */
+    .category {
+      color: #cc0000;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1.article-title {
+      font-family: var(--font-headline);
+      font-size: 2.75rem;
+      line-height: 1.05;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      color: var(--br-black);
+      margin-bottom: 1rem;
+    }
+
+    .author-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--br-border);
+    }
+
+    .author-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .author-info {
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+
+    .author-name {
+      font-weight: 700;
+      color: var(--br-black);
+    }
+
+    .date {
+      color: var(--br-gray);
+    }
+
+    /* Intro / Standfirst */
+    .lead-paragraph {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--br-black);
+      padding-left: 1rem;
+    }
+
+    /* Power Ranking Cards */
+    .rank-card {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--br-border);
+    }
+
+    .rank-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+
+    .rank-title {
+      font-family: var(--font-headline);
+      font-size: 1.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--br-black);
+    }
+
+    .projection-badge {
+      background: var(--br-light-gray);
+      color: #333;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .player-roster {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .rank-analysis {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .verdict {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #111;
+      margin-top: 0.5rem;
+    }
+
+    blockquote.pullquote {
+      margin: 1rem 0;
+      padding: 0.75rem 1.25rem;
+      background: var(--br-light-gray);
+      border-left: 3px solid #222;
+      font-style: italic;
+      font-weight: 600;
+      color: #222;
+    }
+
+    blockquote.pullquote span {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-style: normal;
+      color: var(--br-gray);
+      margin-top: 4px;
+    }
+
+    /* Section Cards (Predictions / Awards) */
+    .special-section {
+      background: #191919;
+      color: #fff;
+      padding: 2rem;
+      border-radius: 6px;
+      margin-bottom: 2.5rem;
+    }
+
+    .special-section h2 {
+      font-family: var(--font-headline);
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid #333;
+      padding-bottom: 0.5rem;
+    }
+
+    .predictions-list, .awards-list {
+      list-style: none;
+    }
+
+    .predictions-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.85rem;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .predictions-list li::before {
+      content: "•";
+      color: #ff3e3e;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -4px;
+    }
+
+    .awards-list li {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #2d2d2d;
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+    }
+
+    .awards-list .award-name {
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .awards-list .award-winner {
+      font-weight: 700;
+      color: #fff;
+      text-align: right;
+    }
+
+    /* Outro */
+    .final-call {
+      background: var(--br-light-gray);
+      padding: 2rem;
+      border-radius: 6px;
+      border-top: 4px solid var(--br-black);
+      text-align: center;
+    }
+
+    .final-call h2 {
+      font-family: var(--font-headline);
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .final-call p {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    .final-date {
+      font-family: var(--font-headline);
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 1.5rem 0 0.5rem 0 !important;
+      color: #cc0000;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--br-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="br-logo">B<span>R</span> FANTASY</div>
+      <div class="nav-tag">Insider Report</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="category">Fantasy Football • Power Rankings</div>
+    <h1 class="article-title">2026 Preseason Power Rankings: Championship Favorites, Red Flags and Complete Roster Breakdowns</h1>
+
+    <div class="author-bar">
+      <div class="author-img">BR</div>
+      <div class="author-info">
+        <div class="author-name">B/R Scouting Department</div>
+        <div class="date">Updated August 28, 2026 • 6 min read</div>
+      </div>
+    </div>
+
+    <div class="lead-paragraph">
+      Twelve managers. Twelve draft strategies. Zero room for excuses. With kickoff right around the corner, we dissect who built a juggernaut and who is already looking toward the 2027 draft.
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">🥇 1. Michael's Magnificent Team — Michael</h2>
+        <span class="projection-badge">PROJ: 146.3 PTS</span>
+      </div>
+      <div class="player-roster">Ja'Marr Chase • Justin Jefferson • A.J. Brown • Breece Hall • Ashton Jeanty</div>
+      <p class="rank-analysis">Michael didn't draft a fantasy team. He drafted a Pro Bowl roster.</p>
+      <p class="rank-analysis">The only thing more questionable than his loaded roster is the fact that he swings a golf club exclusively left-handed. Nobody saw that coming.</p>
+      <div class="verdict">Verdict: Undisputed Championship Favorite.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">🥈 2. CeeDeez Nuts — Reese</h2>
+        <span class="projection-badge">PROJ: 140.4 PTS</span>
+      </div>
+      <div class="player-roster">Mahomes • Achane • Jacobs • Amon-Ra • Higgins</div>
+      <p class="rank-analysis">A terrifying core. Reese has a legitimate shot at the title. But can he manage a newborn, a garden, AND fantasy football?</p>
+      <p class="rank-analysis"><em>Analyst prediction:</em> At least one crucial lineup decision will be missed because “the baby needed something.”</p>
+      <div class="verdict">Verdict: Championship Threat (Pending Nap Schedules).</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">🥉 3. Drewbacca — Drew</h2>
+        <span class="projection-badge">PROJ: ~140.0 PTS</span>
+      </div>
+      <div class="player-roster">Purdy • Bijan • Burden • Egbuka • McBride • Herbert</div>
+      <p class="rank-analysis">One of the strongest rosters in the league. Unfortunately, Drew is also the commissioner. Every suspicious waiver move, questionable trade, and favorable ruling will immediately be investigated.</p>
+      <blockquote class="pullquote">
+        “I don't think Drew is cheating.”
+        <span>— Drew</span>
+      </blockquote>
+      <div class="verdict">Verdict: Championship Contender Under Federal Investigation.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">4. JoeMama — Daniel</h2>
+        <span class="projection-badge">PROJ: 136.1 PTS</span>
+      </div>
+      <p class="rank-analysis">A solid roster with legitimate playoff potential. Unfortunately, Daniel has one obstacle he simply cannot overcome:</p>
+      <p class="rank-analysis">He will never be as handsome as his older brother.</p>
+      <div class="verdict">Verdict: Playoff contender.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">5. Philupataco — Phil</h2>
+        <span class="projection-badge">PROJ: 136.2 PTS</span>
+      </div>
+      <div class="player-roster">Christian McCaffrey • CeeDee Lamb • Malik Nabers • Trey McBride</div>
+      <p class="rank-analysis">Phil brings an impressive fantasy football résumé. Unfortunately for him, nobody cares about the past. This is a new league, and the rest of the managers are ready to humble him.</p>
+      <div class="verdict">Verdict: Dark-horse championship threat.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">6. Levi's Loud Team — Levi</h2>
+        <span class="projection-badge">PROJ: 135.0 PTS</span>
+      </div>
+      <div class="player-roster">Stafford • Gibbs • Derrick Henry • Garrett Wilson • Kyle Pitts</div>
+      <p class="rank-analysis">A respectable roster. But nobody is talking about the roster—they're talking about Phil. Sources report Levi has developed what can only be described as a “deep admiration” for Phil.</p>
+      <div class="verdict">Verdict: Levi, just tell him.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">7. FoosGoneWild — Gordies</h2>
+        <span class="projection-badge">PROJ: 132.3 PTS</span>
+      </div>
+      <div class="player-roster">Josh Allen • Hampton • Kyren Williams • Nico Collins • D.J. Moore</div>
+      <p class="rank-analysis">Sneaky good team. Unfortunately, Gordies can't see worth a damn. While everyone else is studying matchups, Gordies is waiting for the audio-description version of the ESPN app.</p>
+      <div class="verdict">Verdict: Sneaky contender.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">8. Touch Down Syndrome — Chris</h2>
+        <span class="projection-badge">PROJ: 131.4 PTS</span>
+      </div>
+      <div class="player-roster">Jaxson Dart • Saquon Barkley • A.J. Brown • JSN • Travis Kelce</div>
+      <p class="rank-analysis">Could be brilliant. Could be an absolute disaster. Chris looks like he would fit into plenty of fantasy leagues—football just isn't one of them.</p>
+      <div class="verdict">Verdict: Volatile Wildcard.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">9. Darek's Driven Team — Darek</h2>
+        <span class="projection-badge">PROJ: 129.8 PTS</span>
+      </div>
+      <div class="player-roster">Lamar Jackson • Rashee Rice • Etienne • Judkins</div>
+      <p class="rank-analysis">Not a bad roster, but Darek may have confused fantasy football with golf. He's good at one. This isn't it.</p>
+      <div class="verdict">Verdict: Better Luck on the Back Nine.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">10. Donowitz — Donovan</h2>
+        <span class="projection-badge">PROJ: 128.9 PTS</span>
+      </div>
+      <p class="rank-analysis">Jalen Hurts gives Donovan a strong foundation, but his biggest weapon might be his temper.</p>
+      <blockquote class="pullquote">
+        “A red-headed stepchild with anger issues who has somehow been given access to the waiver wire.”
+        <span>— League Scout Report</span>
+      </blockquote>
+      <p class="rank-analysis">The question isn't whether Donovan can win. It's whether he can lose without declaring war on the league.</p>
+      <div class="verdict">Verdict: High Threat Level (Group Chat Danger).</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">11. Cooking Up Wins — Frank</h2>
+        <span class="projection-badge">PROJ: 127.2 PTS</span>
+      </div>
+      <div class="player-roster">Maye • Olave • Sutton • Bowers • Addison</div>
+      <p class="rank-analysis">There are some intriguing pieces here. Unfortunately, Frank's fantasy history hasn't exactly cooked up many wins. Maybe he should stick to the kitchen.</p>
+      <div class="verdict">Verdict: Kitchen Disaster.</div>
+    </div>
+
+    <div class="rank-card">
+      <div class="rank-header">
+        <h2 class="rank-title">12. 4th and 10 — Basco</h2>
+        <span class="projection-badge">PROJ: 118.8 PTS</span>
+      </div>
+      <div class="player-roster">Jayden Daniels • James Cook • Ladd McConkey • Waddle • Montgomery</div>
+      <p class="rank-analysis">Basco brings years of fantasy football experience to the table. There's just one problem: zero playoff experience.</p>
+      <p class="rank-analysis">He's mastered fantasy football. He just hasn't mastered making the postseason.</p>
+      <div class="verdict">Verdict: Rebuilding Mode.</div>
+    </div>
+
+    <div class="special-section">
+      <h2>🔥 Bold Predictions</h2>
+      <ul class="predictions-list">
+        <li>Michael finishes with the league's best regular-season record.</li>
+        <li>Phil makes a deep playoff run and reminds everyone about his résumé.</li>
+        <li>Drew gets formally accused of cheating before Week 5.</li>
+        <li>Frank executes at least one trade that makes the entire league ask, “WHY?”</li>
+        <li>Donovan drops a close game and turns the group chat into an active war zone.</li>
+        <li>Levi still hasn't worked up the courage to tell Phil how he feels.</li>
+      </ul>
+    </div>
+
+    <div class="special-section" style="background: #111;">
+      <h2>🏆 Preseason Awards</h2>
+      <ul class="awards-list">
+        <li><span class="award-name">MVP</span><span class="award-winner">Amon-Ra St. Brown</span></li>
+        <li><span class="award-name">Biggest Sleeper</span><span class="award-winner">Drewbacca</span></li>
+        <li><span class="award-name">Biggest Disappointment</span><span class="award-winner">Cooking Up Wins</span></li>
+        <li><span class="award-name">Worst Trade Incoming</span><span class="award-winner">Frank</span></li>
+        <li><span class="award-name">Most Likely to Rage</span><span class="award-winner">Donovan</span></li>
+        <li><span class="award-name">Most Likely to Be Investigated</span><span class="award-winner">Drew</span></li>
+        <li><span class="award-name">Most Likely to Confess Feelings</span><span class="award-winner">Levi</span></li>
+        <li><span class="award-name">Best Golfer / Worst Threat</span><span class="award-winner">Darek</span></li>
+        <li><span class="award-name">Miss Lineup Due to Baby</span><span class="award-winner">Reese</span></li>
+        <li><span class="award-name">In Need of Audio Description</span><span class="award-winner">Gordies</span></li>
+      </ul>
+    </div>
+
+    <div class="final-call">
+      <h2>🎙️ Final Call</h2>
+      <p>Twelve managers. Twelve rosters. Twelve completely different levels of confidence.</p>
+      <p>Some think they're destined for a championship. Some think their draft was genius. And some are about to discover that fantasy football is significantly harder when everyone else is trying too.</p>
+      <p class="final-date">SEPTEMBER 9, 2026.</p>
+      <p><strong>The excuses end. The lineups lock. The trash talk begins.</strong></p>
+      <p style="margin-top: 10px; font-weight: 800; color: #111;">One manager will lift the trophy.</p>
+    </div>
+  </main>
+
+  <footer>
+    🏈 <strong>MY OTHER LEAGUE</strong> — Everybody thinks they're winning. Most of them are wrong.
+  </footer>
+
+</body>
+</html>
